@@ -5,15 +5,15 @@ Authors@R: c(
     person(given = "Henri",
            family = "Funk",
            role = c("aut", "cre"),
-           email = "H.Funk@lmu.de"))
+           email = "Henri.Funk@stat.uni-muenchen.de"))
 Description: 
-    This package implements fuzzy DBSCAN both, with fuzzy core and fuzzy border.
+    This package implements Fuzzy DBSCAN with both Fuzzy Core and Fuzzy Border.
     Therefore it provides a method to initialize and run the algorithm and a
     function to predict new data w.t.h. of `R6`.
     The package is build upon the paper "Fuzzy Extensions of the DBScan algorithm"
     from Dino Ienco and Gloria Bordogna.
-    The predict function assignes new data based on the same criteria as the algorithm itself.
-    However, the prediction function freezes the algorithm to perserve the trained
+    A predict function assigns new data according to the same criteria as the algorithm itself.
+    However, the prediction function freezes the algorithm to preserve the trained
     cluster structure and treats each new prediction object individually.
 License: LGPL-3
 Depends:
