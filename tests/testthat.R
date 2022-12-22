@@ -7,6 +7,6 @@
 # * https://testthat.r-lib.org/reference/test_package.html#special-files
 
 library(testthat)
-library(FuzzyDBSCAN)
+library(FuzzyDBScan)
 
-test_check("FuzzyDBSCAN")
+test_check("FuzzyDBScan")

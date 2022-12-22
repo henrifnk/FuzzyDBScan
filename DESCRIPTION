@@ -1,5 +1,5 @@
-Package: FuzzyDBSCAN
-Title: Package to run and predict a Fuzzy DBSCAN
+Package: FuzzyDBScan
+Title: Package to run and predict a Fuzzy DBScan
 Version: 0.0.1
 Authors@R: c(
     person(given = "Henri",
