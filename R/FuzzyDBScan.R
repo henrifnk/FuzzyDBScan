@@ -3,7 +3,7 @@
 #' Fuzzy DBScan
 #'
 #' @description
-#' This object implements fuzzy DBSCAN with both, fuzzy cores and fuzzy borders.
+#' This object implements fuzzy DBScan with both, fuzzy cores and fuzzy borders.
 #' Additionally, it provides a predict function.
 #'
 #' @details
@@ -69,7 +69,7 @@ FuzzyDBScan = R6Class("FuzzyDBScan",
                         #' @param pts [numeric]\cr
                         #' number of maximum and minimum points required in the
                         #' `eps`  neighborhood for core points (excluding the
-                        #' point itself). If the length ot the argument is 1,
+                        #' point itself). If the length of the argument is 1,
                         #' the algorithm looses its fuzzy border property. If
                         #' the length of `eps` is also 1L, the algorithm equals
                         #' to non-fuzzy DBScan.
@@ -171,7 +171,7 @@ FuzzyDBScan = R6Class("FuzzyDBScan",
                         #' @field pts [numeric]\cr
                         #'  number of maximum and minimum points required in the
                         #'  `eps`  neighborhood for core points (excluding the
-                        #'  point itself). If the length ot the argument is 1,
+                        #'  point itself). If the length of the argument is 1,
                         #'  the algorithm looses its fuzzy border property. If
                         #'  the length of `eps` is also 1L, the algorithm equals
                         #'  to non-fuzzy DBScan.
