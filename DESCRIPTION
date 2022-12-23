@@ -6,6 +6,8 @@ Authors@R: c(
            family = "Funk",
            role = c("aut", "cre"),
            email = "Henri.Funk@stat.uni-muenchen.de"))
+Author: Henri Funk <Henri.Funk@stat.uni-muenchen.de>
+Maintainer: Henri Funk <Henri.Funk@stat.uni-muenchen.de>
 Description: 
     An interface for training Fuzzy DBScan with both Fuzzy Core and Fuzzy Border.
     Therefore, the package provides a method to initialize and run the algorithm and a
@@ -30,7 +32,6 @@ Suggests:
     factoextra,
     spelling
 Encoding: UTF-8
-LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.2
 Language: en-US
