@@ -13,4 +13,4 @@ jobs:
     # Comments in YAML start with a # (hashtag symbol)
     # Comment your thoughts for yourself or coworkers :)
     steps:
-    - name: …
+    - name: trial
