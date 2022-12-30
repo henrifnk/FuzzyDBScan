@@ -1,12 +1,10 @@
 Package: FuzzyDBScan
 Title: Package to Run and Predict a Fuzzy DBScan
 Version: 0.0.2
-Authors@R: c(
-    person(given = "Henri",
+Authors@R: c(person(given = "Henri",
            family = "Funk",
            role = c("aut", "cre"),
            email = "Henri.Funk@stat.uni-muenchen.de"))
-Author: Henri Funk <Henri.Funk@stat.uni-muenchen.de>
 Maintainer: Henri Funk <Henri.Funk@stat.uni-muenchen.de>
 Description: 
     An interface for training Fuzzy DBScan with both Fuzzy Core and Fuzzy Border.
