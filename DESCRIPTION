@@ -5,7 +5,6 @@ Authors@R: c(person(given = "Henri",
            family = "Funk",
            role = c("aut", "cre"),
            email = "Henri.Funk@stat.uni-muenchen.de"))
-Maintainer: Henri Funk <Henri.Funk@stat.uni-muenchen.de>
 Description: 
     An interface for training Fuzzy DBScan with both Fuzzy Core and Fuzzy Border.
     Therefore, the package provides a method to initialize and run the algorithm and a
