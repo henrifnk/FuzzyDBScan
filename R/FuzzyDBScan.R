@@ -109,7 +109,7 @@ FuzzyDBScan = R6Class("FuzzyDBScan",
                           lapply(b_densities, function(x) self$dense[x[1]] = x[2])
                           self$results = private$return_probs(self$clusters, self$dense)
                         },
-
+                        
                         #' @description Predict new data with the initialized
                         #' algorithm.
                         #' @param new_data [data.frame] | [matrix]\cr
@@ -138,7 +138,7 @@ FuzzyDBScan = R6Class("FuzzyDBScan",
                           if(!cmatrix) return(cluster_df)
                           private$return_probs(cluster_df$cluster, cluster_df$dense)
                         },
-
+                        
                         #' @description Plot clusters and soft labels on two
                         #'  features.
                         #' @param x [character]\cr
@@ -148,15 +148,16 @@ FuzzyDBScan = R6Class("FuzzyDBScan",
                         plot= function(x, y){
                           assert_character(x, any.missing = FALSE, len = 1L)
                           assert_character(y, any.missing = FALSE, len = 1L)
-                          ggplot(data = self$dta, aes(colour = as.factor(self$clusters))) +
-                            geom_point(mapping = aes_string(x, y), alpha = self$dense)
+                          cluster_num = as.factor(self$clusters)
+                          ggplot(data = self$dta, aes(!!!list(x = sym(x), y = sym(y)), colour = cluster_num, alpha = self$dense)) +
+                            geom_point()
                         },
-
+                        
                         #' @field dta [data.frame] | [matrix]\cr
                         #'  The data to be clustered by the algorithm. Allowed
                         #'  are only [numeric] columns.
                         dta = NULL,
-
+                        
                         #' @field eps [numeric]\cr
                         #'  The size (radius) of the epsilon neighborhood.
                         #'  If  the radius contains 2 numbers, the fuzzy cores
@@ -167,7 +168,7 @@ FuzzyDBScan = R6Class("FuzzyDBScan",
                         #'  `pts` is also 1L, the algorithm equals to non-fuzzy
                         #'  DBScan.
                         eps = NULL,
-
+                        
                         #' @field pts [numeric]\cr
                         #'  number of maximum and minimum points required in the
                         #'  `eps`  neighborhood for core points (excluding the
@@ -176,23 +177,23 @@ FuzzyDBScan = R6Class("FuzzyDBScan",
                         #'  the length of `eps` is also 1L, the algorithm equals
                         #'  to non-fuzzy DBScan.
                         pts = NULL,
-
+                        
                         #' @field clusters [factor]\cr
                         #'  Contains the assigned clusters per observation in
                         #'  the same order as in `dta`.
                         clusters = NULL,
-
+                        
                         #' @field dense [numeric]\cr
                         #'  Contains the assigned density estimates per
                         #'  observation in the same order as in `dta`.
                         dense = NULL,
-
+                        
                         #' @field point_def [character]\cr
                         #'  Contains the assigned definition estimates per
                         #'  observation in the same order as in `dta`. Possible
                         #'  are "Core Point", "Border Point" and "Noise".
                         point_def = NULL,
-
+                        
                         #' @field results [data.table]\cr
                         #'  A table where each column indicates for the
                         #'  probability of the new data to belong to a
@@ -207,11 +208,7 @@ FuzzyDBScan = R6Class("FuzzyDBScan",
                           j = 1L
                           while(j > 0L) {
                             nextPoint = private$neighbors_id[j]
-                            if(self$clusters[nextPoint] == -1L) {
-                              self$clusters[nextPoint] = private$currentPoint
-                              neighbors = private$get_neighbors(self$dta, self$dta[nextPoint, ])
-                              self$dense[nextPoint] = private$get_density(neighbors$dist)
-                            } else if(self$clusters[nextPoint] == 0L) {
+                            if(self$clusters[nextPoint] %in% c(-1L, 0L)){
                               self$clusters[nextPoint] = private$currentPoint
                               nextNeighbors = private$get_neighbors(self$dta, self$dta[nextPoint, ])
                               if(sum(nextNeighbors$dist) >= min(self$pts)) {
@@ -241,6 +238,7 @@ FuzzyDBScan = R6Class("FuzzyDBScan",
                         get_density = function(n_dist){
                           if(sum(n_dist) > max(self$pts)) return(1)
                           if(length(self$pts) == 1L) return(sum(n_dist) / self$pts)
+                          if((sum(n_dist) - min(self$pts)) / (max(self$pts) - min(self$pts)) < 0) browser()
                           (sum(n_dist) - min(self$pts)) / (max(self$pts) - min(self$pts))
                         },
                         get_border_density = function(b_vec){
