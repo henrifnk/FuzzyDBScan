@@ -247,7 +247,7 @@ FuzzyDBScan = R6Class("FuzzyDBScan",
                             "dense" = min(self$dense[fcores]))
                         },
                         return_probs = function(clusters, dense){
-                          ids = sort(unique(clusters))
+                          ids = sort(unique(self$clusters))
                           prob_per_cl = lapply(ids, function(x){
                             vec = rep(0, length(clusters))
                             vec[clusters == x] = dense[clusters == x]
@@ -255,7 +255,7 @@ FuzzyDBScan = R6Class("FuzzyDBScan",
                           })
                           prob_df = do.call(cbind.data.frame, prob_per_cl)
                           colnames(prob_df) = ids
-                          prob_df[, 1] = 1 - abs(apply(prob_df[, -1], 1, sum))
+                          prob_df[, 1] = 1 - apply(prob_df[, -1], 1, sum)
                           data.table(prob_df)
                         },
                         predict_observation = function(x) {
