@@ -238,7 +238,6 @@ FuzzyDBScan = R6Class("FuzzyDBScan",
                         get_density = function(n_dist){
                           if(sum(n_dist) > max(self$pts)) return(1)
                           if(length(self$pts) == 1L) return(sum(n_dist) / self$pts)
-                          if((sum(n_dist) - min(self$pts)) / (max(self$pts) - min(self$pts)) < 0) browser()
                           (sum(n_dist) - min(self$pts)) / (max(self$pts) - min(self$pts))
                         },
                         get_border_density = function(b_vec){
@@ -255,7 +254,7 @@ FuzzyDBScan = R6Class("FuzzyDBScan",
                           })
                           prob_df = do.call(cbind.data.frame, prob_per_cl)
                           colnames(prob_df) = ids
-                          prob_df[, 1] = 1 - apply(prob_df[, -1], 1, sum)
+                          prob_df[, 1] = 1 - apply(prob_df[, -1, drop=FALSE], 1, sum)
                           data.table(prob_df)
                         },
                         predict_observation = function(x) {
